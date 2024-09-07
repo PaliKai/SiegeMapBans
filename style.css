@@ -6,7 +6,7 @@
     src:url(https://static-dm.ubisoft.com/siege/prod/7c574ea662392ab39c09ed79280cf5b2.woff2) format("woff2"),
     url(https://static-dm.ubisoft.com/siege/prod/1a098e45a853edc663c9505d21770af9.woff) format("woff");
     font-weight:400;
-    font-style:normal;
+    font-style:normal
 }
 
 @font-face {
@@ -14,285 +14,138 @@
     src:url(https://static-dm.ubisoft.com/siege/prod/c72c59e83818ebb90c20a5a67a70fb0b.woff2) format("woff2"),
     url(https://static-dm.ubisoft.com/siege/prod/0a60b8acde11c1cb9b049ca2cd6bda22.woff) format("woff");
     font-weight:400;
-    font-style:normal;
-}
-
-:root {
-    --darkOutline: #1e1e1d;
-    --goldOutline: #c5ae65;
-    --neutralGray: #b5b5b5;
-}
+    font-style:normal
+  }
 
 * {
     font-family: Roboto, sans-serif;
     margin: 0px;
     padding: 0px;
-
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: hidden;
 
 }
 
 body {
-    /* width: 100vw; */
+    width: 100vw;
     height: 100vh;
     background-image: url(https://static-dm.ubisoft.com/siege/prod/7907369fa863844fc1ae432a9ca0e610.jpg);
     background-size: cover;
     display: flex;
-    align-items: center;
     flex-direction: column;
 }
 
-div#Header:before {
-    content: " ";
-    position: absolute;
-    /* z-index: 10; */
-    top: -2px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    border-radius: 0 0 0.3vw 0.3vw;
-    border: 2px solid var(--goldOutline);
-}
-
-div#Header:after {
-    content: " ";
-    position: absolute;
-    /* z-index: 10; */
-    top: 0px;
-    left: 2px;
-    right: 2px;
-    bottom: 2px;
-    border-radius: 0 0 0.3vw 0.3vw;
-    border: 2px solid var(--darkOutline);
-}
-
-div#Header {
-    border-radius: 0 0 0.3vw 0.3vw;
-    position: relative;
+div#TeamSelect {
     width: 100vw;
-    height: 8vh;
+    height: 7vh;
     flex-shrink: 0;
-    background-color: var(--darkOutline);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: visible;
-    box-sizing: border-box;
-    border: 2px solid var(--darkOutline);
-
-    background-image: url(MeshBG.png);
-    background-size: 4vw;
 }
 
-div#Header h1 {
-    -webkit-text-fill-color: transparent;
-    letter-spacing: 0.1vw;
+div#Frame {
+    width: 300px;
+    overflow: hidden;
+
+    --Offset: 0px;
+
+    display: grid;
+    
+    grid-auto-flow: column;
+}
+
+div#Operator {
+    --Mod: 0;
+    width: 300px;
+    left: calc(var(--Offset) + 600px * var(--Mod));
     position: relative;
-    text-transform: uppercase;
-    font-family: R6S-Bold, sans-serif;
-    font-size: 7vh;
-    overflow: visible;
-    z-index: 100;
-    margin-bottom: 0.3vw;
-    -webkit-text-stroke: 4px black;
 }
 
-div#Header h1::before {
-    content: "Map Bans";
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    bottom: 0px;
-
-    background-image: linear-gradient(0deg, #3b3b3b, #858585);
-    background-clip: text;
-    background-color: #4f4f4f;
-
-
-    -webkit-text-fill-color: transparent;
-    -webkit-text-stroke: 1px var(--goldOutline);
+div#Operator2 {
+    width: 300px;
+    left: var(--Offset);
+    position: relative;
 }
 
-div#main {
-    width: 100vw;
-    flex-grow: 1;
+div.Portrait {
+    height: 500px;
+    width: 100%;
+    background-color: hsla(0,0%,100%,.15);
+
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-end;
+    align-items: center;
 }
 
-div#maps {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 100%;
-    justify-content: center;
-    align-content: flex-start;
-    padding: 0.3vw;
-    box-sizing: border-box;
-    overflow: visible;
+div.Icon {
+    width: 120px;
+    background-size: cover;
+    aspect-ratio: 1;
+    margin: 10%;
+    /* background-color: rgba(0, 0, 0, 0.5); */
 }
 
-div.map {
-    box-sizing: border-box;
-    width: calc(100%/6);
-    padding: 0.3vw;
-    cursor: pointer;
-    transition: transform 250ms 0s ease-in-out;
-    overflow: visible;
-}
-
-@media only screen and (max-width:1248px) {
-    div.map {
-        width: calc(100%/5);
-    }
-}
-
-div.map:hover {
-    z-index: 10;
-    transform: scale(1.08);
-}
-
-div.inner {
-    transition: filter 250ms 0s ease-out;
-}
-
-div.map:hover div.inner {
-    box-shadow: 0px 0px 10px 10px rgba(10, 10, 20, 0.5);
-}
-
-div.map.banned div.inner {
-    filter: brightness(0.2);
-}
-
-div.picture {
-    background-color: hsla(0,0%,100%,.15);
-    background-size: contain;
-    background-repeat: no-repeat;
-    aspect-ratio: 16/9;
-    position: relative;
-    overflow: visible;
-
-}
-
-div.overlay {
-    width: 100%;
-    height: 100%;
-    padding-bottom: 1px;
-    position: absolute;
-    left: 0px;
-    top: 0px;
-}
-
-div.map:hover div.overlay {
-    background: linear-gradient(0deg, rgba(0, 255, 229, 0.5) 0%, rgba(0, 0, 0, 0) 30%);
-    /* background-color: rgb(0, 255, 229); */
-}
-
-/* div#maps div.map:hover div.inner::before {
-    content: '';
-    z-index: 10;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-} */
-
-h1.label {
+h1.Label {
     font-family: R6S-RegItalic, sans-serif;
     color: #24262a;
-    font-size: 1.6vw;
+    font-size: 3.5em;
     font-weight: 400;
-    /* box-sizing: border-box; */
-    /* border: none; */
-    /* min-height: 79px; */
-    /* background-color: #c3c3c3; */
-    background-color: var(--neutralGray);
+    box-sizing: border-box;
+    min-height: 79px;
+    background-color: #c3c3c3;
     
     text-align: center;
     width:100%;
 
-    padding: 0.2% 0;
-
-    text-wrap: nowrap;
-
-    /* user-select: none; */
-    
+    padding: 2% 0;
 }
 
-div.map:hover h1.label {
-    background-color: rgb(0, 255, 229);
-}
-
-#buttons {
-    /* height: 19%; */
+#TeamSelect div {
+    position: absolute;
     display: flex;
-    flex-direction: column;
-    flex-shrink: 0;
     align-items: center;
-    justify-content: center;
-    overflow: visible;
-    width: 100%;
+    height: 7vh;
 
-    gap: 1vh;
-
-    margin: 1vh 0px;
+    path {
+        fill: #000;
+    }
 }
 
-button#reset {
-    display: none;
-    overflow: visible;
+#TeamSelect div svg {
+    height: 7vh;
+    
+    path {
+        fill: #000;
+    }
+}
 
-    /* margin: 1px 0px; */
-    height: 9vh;
-    overflow: visible;
-    max-height: 150px;
-    min-height: 50px;
-    aspect-ratio: 2;
-    /* font-size: 18px; */
-    font-size: 5vh;
-    text-shadow: black 2px 2px 5px;
-    /* display: inline-block; */
-    outline: 0;
-    border: 0;
-    cursor: pointer;
-    will-change: box-shadow,transform;
-    background: radial-gradient( 100% 100% at 50% 0%, #ff5e5e 0%, #ff3232 100% );
-    /* background-image: url("/BlackIce.png"); */
-    /* background-size: cover; */
-    /* background-position-y: center; */
-    box-shadow: 0px 0.01em 0.01em rgb(45 35 66 / 40%), 0px 0.3em 0.7em -0.01em rgb(45 35 66 / 30%), inset 0px -0.01em 0px rgb(58 65 111 / 50%);
-    border-radius: 0.3em;
-    color: #fff;
-    transition: box-shadow 0.15s ease, transform 0.15s ease;
-
+#TeamSelect div h1 {
+    padding: 0 1vw 0.25vw 1vw;
+    font-size: 6vh;
     font-family: R6S-RegItalic, sans-serif;
-    /* font-size: 1.3em; */
-    color: rgb(214, 214, 214);
-    /* text-shadow: 0 1px 0 rgb(0 0 0 / 40%); */
 }
 
-button#reset:hover {
-    box-shadow: 0px 0.1em 0.2em rgba(66, 35, 35, 0.4), 0px 0.4em 0.7em -0.1em rgba(66, 35, 35, 0.3), inset 0px -0.1em 0px #290707;
-    transform: translateY(-0.1em);
-}
-  
-button#reset:active {
-    box-shadow: inset 0px 0.1em 0.6em #3c0b0b;
-    transform: translateY(0em);
+#Attack {
+    left: 0;
+    h1 {
+        transition: opacity 1s ease-out;
+        opacity: 1;
+    }
 }
 
-button#random {
-    /* margin: 1px 0px; */
-    height: 18vh;
-    overflow: visible;
-    max-height: 150px;
-    min-height: 50px;
+#Defense {
+    z-index: 1;
+    right: 0;
+    h1 {
+        transition: opacity 1s ease-out;
+        opacity: 0;
+    }
+}
+
+button {
+    width: 500px;
     aspect-ratio: 4;
     /* font-size: 18px; */
-    font-size: 8vh;
-    text-shadow: black 2px 2px 5px;
-    /* display: inline-block; */
+    font-size: 2.5em;
+    display: inline-block;
     outline: 0;
     border: 0;
     cursor: pointer;
@@ -302,37 +155,103 @@ button#random {
     background-size: cover;
     background-position-y: center;
     box-shadow: 0px 0.01em 0.01em rgb(45 35 66 / 40%), 0px 0.3em 0.7em -0.01em rgb(45 35 66 / 30%), inset 0px -0.01em 0px rgb(58 65 111 / 50%);
+    /* padding: 0 2em; */
     border-radius: 0.3em;
     color: #fff;
+    /* height: 2.6em; */
     transition: box-shadow 0.15s ease, transform 0.15s ease;
 
-    font-family: R6S-RegItalic, sans-serif;
-    /* font-size: 1.3em; */
-    color: rgb(214, 214, 214);
-    /* text-shadow: 0 1px 0 rgb(0 0 0 / 40%); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 18%;
 }
 
+button p {
+    width: 50%;
+    font-family: R6S-RegItalic, sans-serif;
+    font-size: 1.3em;
+    color: rgb(214, 214, 214);
+    text-shadow: 0 1px 0 rgb(0 0 0 / 40%);
+    text-align: end;
+}
+
+button p.right {
+    text-align: start;
+}
   
-button#random:hover {
+button:hover {
     box-shadow: 0px 0.1em 0.2em rgb(45 35 66 / 40%), 0px 0.4em 0.7em -0.1em rgb(45 35 66 / 30%), inset 0px -0.1em 0px #072229;
     transform: translateY(-0.1em);
 }
   
-button#random:active {
+button:active {
     box-shadow: inset 0px 0.1em 0.6em #0b313c;
     transform: translateY(0em);
 }
 
-/* button {
-    width: 600px;
+#RedSide {
+    position: absolute;
+    width: calc(75% + 25px);
+    height: 100%;
+    background: linear-gradient(90deg, #ff141e 0%, #FF2530 100%);
+    /* transform: skew(20deg,0deg); */
+    transition: width 1s ease-in-out;
+}
+
+#BlueSide.defending + #RedSide {
+    width: calc(25% + 50px);
+}
+
+#RedSide:hover {
+    filter: brightness(0.825);
+}
+
+#RedSide:active {
+    filter: brightness(0.75);
+}
+
+#BlueSide {
+    position: absolute;
+    height: 7vh;
+    width: calc(25% + 50px);
+    right: -50px;
+    background: linear-gradient(90deg, #2e83cc 0%, #0076d8 100%);
+    transform: skew(-20deg,0deg);
+    transition: width 1s ease-in-out;
+    z-index: 1;
+}
+
+#BlueSide:hover {
+    filter: brightness(0.825);
+}
+
+#BlueSide:active {
+    filter: brightness(0.75);
+}
+
+#BlueSide.defending {
+    width: calc(75% + 50px);
+}
+
+#BlueSide.defending ~ div#Attack h1 {
+    opacity: 0;
+}
+
+#BlueSide.defending ~ div#Defense h1 {
+    opacity: 1;
+}
+
+button {
+    /* width: 600px;
     aspect-ratio: 4;
 
     background-color: yellow;
 
     font-size: 3em;
 
-    border-radius: 1vw;
-} */
+    border-radius: 1vw; */
+}
 /* 
 button:hover {
     filter: brightness(0.825);
@@ -341,3 +260,13 @@ button:hover {
 button:active {
     filter: brightness(0.75);
 } */
+
+#main {
+    height: auto;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    justify-content: space-evenly;
+    align-items: center;
+}
