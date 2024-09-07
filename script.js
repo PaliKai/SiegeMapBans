@@ -1,15 +1,19 @@
-ranked = null
-other = null
-
-
-var main = document.getElementById("main")
-
-
+var mainJson
 fetch('./maps.json')
     .then((response) => response.json())
     .then(json => loadMaps(json));
 
+ranked = null
+other = null
+
+
+var mapsDiv = document.getElementById("maps")
+
+var resetButton = document.getElementById("reset")
+
 function loadMaps(json) {
+    mainJson = json;
+
     ranked = json.ranked
     other = json.other
 
@@ -20,7 +24,35 @@ function loadMaps(json) {
 
 function addMap(map) {
     let mapElement = new MapElement(map)
-    main.appendChild(mapElement.mainDiv)
+    mapsDiv.appendChild(mapElement.mainDiv)
+}
+
+function clearMaps() {
+    while (mapsDiv.firstElementChild) {
+        mapsDiv.removeChild(mapsDiv.firstElementChild)
+    }
+}
+
+function random5(event) {
+    clearMaps();
+
+    resetButton.style.display = "block"
+
+    let unchosenMaps = [...ranked]
+
+    for (let i = 0; i < 5; i++) {
+        let chosenMap = unchosenMaps.splice(Math.floor(Math.random()*unchosenMaps.length), 1)[0];
+
+        addMap(chosenMap);
+    }
+}
+
+function reset() {
+    resetButton.style.display = "none"
+
+    clearMaps()
+
+    loadMaps(mainJson)
 }
 
 class MapElement {
